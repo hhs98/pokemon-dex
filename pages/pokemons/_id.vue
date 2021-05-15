@@ -6,7 +6,14 @@
         <div class="row align-items-center">
           <div class="col-lg-6" align="center">
             <img
+              v-if="pokemon.sprites.other.dream_world.front_default !== null"
               :src="pokemon.sprites.other.dream_world.front_default"
+              alt=""
+              style="height:25rem"
+            />
+            <img
+              v-else
+              :src="pokemon.sprites.front_default"
               alt=""
               class="img-fluid"
             />

@@ -1,6 +1,6 @@
 <template>
   <div class="row justify-content-center">
-    <div class="col-lg-8">
+    <div class="col-lg-8 col-sm-12">
       <h1 class="display-1 font-weight-bold mt-5 text-center">Pokemons</h1>
       <input
         type="text"
@@ -8,7 +8,11 @@
         placeholder="Search for a Pokemon"
         v-model="search"
       />
-      <div v-if="search != ''" class="card my-3 shadow">
+
+      <div
+        v-if="filteredPokemons.length !== 0 && search !== ''"
+        class="card my-3 shadow"
+      >
         <div class="card-body">
           <table class="table table-striped table-hover table-borderless mb-0">
             <tbody>
@@ -66,6 +70,11 @@
           </div>
         </div>
       </div>
+      <div v-if="filteredPokemons.length === 0" class="card my-3 shadow">
+        <div class="card-body text-danger">
+          Oh No! we don't know this pokemon!
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -107,6 +116,10 @@ export default {
 }
 .card {
   border-radius: 2rem;
+}
+.card-body > .card {
+  border-radius: 1.5rem;
+  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
 }
 a {
   text-decoration: none;
