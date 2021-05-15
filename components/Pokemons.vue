@@ -74,8 +74,7 @@
 export default {
   data() {
     return {
-      pokemons: [],
-      search: ""
+      pokemons: []
     };
   },
   async fetch() {
@@ -85,6 +84,14 @@ export default {
     this.pokemons = data.results;
   },
   computed: {
+    search: {
+      get() {
+        return this.$store.state.pokemons.search;
+      },
+      set(value) {
+        this.$store.commit("pokemons/updateSearch", value);
+      }
+    },
     filteredPokemons: function() {
       return this.pokemons.filter(pokemon => {
         return pokemon.name.toLowerCase().match(this.search.toLowerCase());
